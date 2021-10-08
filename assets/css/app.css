@@ -88,3 +88,18 @@
   display: block;
   margin: -1rem 0 2rem;
 }
+
+/* Chat Container */
+#chat-container {
+    display: flex;
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin: -1em 1em 1em -1em;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 500px;
+}
+
+#chat-messages {
+    flex-grow: 1;
+}
