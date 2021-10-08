@@ -7,8 +7,12 @@ defmodule PurrWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_purr_key",
-    signing_salt: "JC4kvhHX"
+    signing_salt: "ytSUPbDJ"
   ]
+
+  socket "/socket", PurrWeb.UserSocket,
+    websocket: true,
+    longpoll: false
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
@@ -20,7 +24,7 @@ defmodule PurrWeb.Endpoint do
     at: "/",
     from: :purr,
     gzip: false,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+    only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
