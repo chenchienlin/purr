@@ -1,1 +1,8 @@
-<button phx-click="create-room" title="Start a chat">Start a chat</>
+<section class="phx-hero">
+  <h1><%= gettext "Welcome to %{name}...", name: "Purr" %></h1>
+  <p>Create a room by clicking the button below</p>
+
+  <form phx-change="suggest" phx-submit="search">
+    <button phx-click="create-room" title="Start a chat">Start a chat</>
+  </form>
+</section>

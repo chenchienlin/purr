@@ -1,19 +1,20 @@
 <p>Hi, there, <strong><%= @username %></strong>!!! Welcome to room <strong><%= @room_id %></strong>!!!</p>
 
-
-<div id="chat-container">
-    <div id="chat-messages">
-        <%= for message <- @messages do %>
+<div id="parent">
+    <div id="chat-container"><strong>Messages</strong>
+        <div id="chat-messages">
+            <%= for message <- @messages do %>
             <%= render_message(message) %>
+            <% end %>
+        </div>
+        <div class="foot">
+            <%= f = form_for :message_form, "#", id: "chat-form", phx_submit: :submit_message, phx_change: :update_form %>
+            <%= text_input f, :message, placeholder: "Type a message..." %>
+        </div>
+    </div>
+    <div id="user-container"><strong>Who's Online</strong>
+        <%= for user <- @users do %>
+        <%= render_user(user) %>
         <% end %>
     </div>
-    <div id="user-container">
-    <h3>Users Online</h3>
-    <%= for user <- @users do %>
-        <%= render_user(user) %>
-    <% end %>
-    </div>
 </div>
-
-<%= f = form_for :message_form, "#", id: "chat-form", phx_submit: :submit_message, phx_change: :update_form %>
-    <%= text_input f, :message, placeholder: "Type a message..." %>
