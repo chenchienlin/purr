@@ -92,14 +92,36 @@
 /* Chat Container */
 #chat-container {
     display: flex;
-    border: 1px solid #ccc;
-    padding: 1em;
-    margin: -1em 1em 1em -1em;
-    flex-direction: column;
+    /* border: 1px solid #ccc; */
+    /* margin: -1em 1em 1em -1em; */
+    /* flex-direction: column; */
     justify-content: space-between;
     height: 500px;
 }
 
 #chat-messages {
     flex-grow: 1;
+    padding: 1em;
+    border: 1px solid #ccc;
+    margin: -1em 1em 1em -1em;
+}
+
+#chat-messages p {
+    padding: 0;
+    margin: 0;
+}
+
+#message-container {
+    display: flex;
+    /* border: 1px solid #ccc; */
+    padding: 1em;
+    /* margin: -1em 1em 1em -1em; */
+    /* flex-direction: column; */
+    justify-content: space-between;
+    height: 500px;
+}
+
+#user-list p {
+    padding: 0;
+    margin: 0;
 }

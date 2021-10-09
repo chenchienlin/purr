@@ -12,9 +12,11 @@ defmodule Purr.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Purr.PubSub},
       # Start the Endpoint (http/https)
-      PurrWeb.Endpoint
+      PurrWeb.Endpoint,
       # Start a worker by calling: Purr.Worker.start_link(arg)
       # {Purr.Worker, arg}
+      # Start presence
+      PurrWeb.Presence
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
