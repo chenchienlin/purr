@@ -31,7 +31,9 @@ defmodule PurrWeb.RoomLive do
   @impl true
   def handle_event("submit_message", %{"message_form" => %{"message" => message}}, socket) do
     message_payload = %UserMessage{uuid: UUID.uuid4(), username: socket.assigns.username, content: message}
-    PurrWeb.Endpoint.broadcast(socket.assigns.topic, "update-message", message_payload)
+    # Logger.info(temporary_assigns: socket.assigns.temporary_assigns)
+    # Logger.info(messages: socket.assigns.messages)
+    PurrWeb.Endpoint.broadcast(socket.assigns.topic, "update_message", message_payload)
     {:noreply, assign(socket, message: "")}
   end
 
@@ -41,8 +43,17 @@ defmodule PurrWeb.RoomLive do
   end
 
   @impl true
-  def handle_info(%{event: "update-message", payload: message_payload}, socket) do
-    {:noreply, assign(socket, messages: [message_payload])}
+  def handle_info(%{event: "update_message", payload: message_payload}, socket) do
+    {:noreply, update(socket, :messages, fn messages -> update_message(messages, message_payload) end)}
+  end
+
+  def update_message(messages, message_payload) when length(messages) < 15 do
+      messages ++ [message_payload]
+  end
+
+  def update_message(messages, message_payload) when length(messages) >= 15 do
+    [ head | messages] = messages
+    messages ++ [message_payload]
   end
 
   # "presence_diff" event. The diff structure will be a map of :joins and :leaves
