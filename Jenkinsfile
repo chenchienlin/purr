@@ -6,7 +6,7 @@ node {
         commit_id = readFile('.git/commit-id').trim()
     }
     stage('Docker build/push') {
-        docker.withRegistry('http://docker-registry:5000/v2', 'purr') {
+        docker.withRegistry('http://docker-registry:5000/v2', '') {
         def app = docker.build("docker-registry/purr:${commit_id}", '.').push()
         }
     }
